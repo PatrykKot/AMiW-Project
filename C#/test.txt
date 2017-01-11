@@ -1,0 +1,3 @@
+{
+  "states": [true, false, true, false,false,false,true]
+}

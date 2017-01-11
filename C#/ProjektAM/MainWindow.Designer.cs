@@ -31,6 +31,7 @@
             this.Console = new System.Windows.Forms.TextBox();
             this.buttonGet = new System.Windows.Forms.Button();
             this.textBoxUrl = new System.Windows.Forms.TextBox();
+            this.checkBoxAuto = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // Console
@@ -58,11 +59,24 @@
             this.textBoxUrl.Size = new System.Drawing.Size(315, 20);
             this.textBoxUrl.TabIndex = 2;
             // 
+            // checkBoxAuto
+            // 
+            this.checkBoxAuto.AutoSize = true;
+            this.checkBoxAuto.Location = new System.Drawing.Point(375, 25);
+            this.checkBoxAuto.Name = "checkBoxAuto";
+            this.checkBoxAuto.Size = new System.Drawing.Size(48, 17);
+            this.checkBoxAuto.TabIndex = 3;
+            this.checkBoxAuto.Text = "Auto";
+            this.checkBoxAuto.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.checkBoxAuto.UseVisualStyleBackColor = true;
+            this.checkBoxAuto.CheckedChanged += new System.EventHandler(this.checkBoxAuto_CheckedChanged);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(455, 354);
+            this.Controls.Add(this.checkBoxAuto);
             this.Controls.Add(this.textBoxUrl);
             this.Controls.Add(this.buttonGet);
             this.Controls.Add(this.Console);
@@ -78,6 +92,7 @@
         private System.Windows.Forms.TextBox Console;
         private System.Windows.Forms.Button buttonGet;
         private System.Windows.Forms.TextBox textBoxUrl;
+        private System.Windows.Forms.CheckBox checkBoxAuto;
     }
 }
 

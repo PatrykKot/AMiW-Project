@@ -7,6 +7,6 @@ namespace ProjektAM
 {
     class JsnData
     {
-        public List<bool> states { get; set; }
+        public List<int> random { get; set; }
     }
 }

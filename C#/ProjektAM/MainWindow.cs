@@ -53,14 +53,13 @@ namespace ProjektAM
             {
                 JsnData data = getJsnObject(textBoxUrl.Text);
                 Console.Text = "";
-                List<String> states = new List<String>();
-                foreach (bool s in data.states)
+                List<String> measurments = new List<String>();
+                foreach (int s in data.random)
                 {
-                    if (s) states.Add("zielona");
-                    else states.Add("czerwona");
+                    measurments.Add(s.ToString());
                 }
-                Console.Lines = states.ToArray();
-
+                Console.Lines = measurments.ToArray();
+ 
             }
             catch (Exception ex)
             {

@@ -1,0 +1,13 @@
+package pl.poznan.put.beans;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+@Configuration
+public class BeansConfig extends WebMvcConfigurerAdapter {
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/**").addResourceLocations("/resources/", "file:Web/");
+	}
+}

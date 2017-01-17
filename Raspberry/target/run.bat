@@ -1,0 +1,1 @@
+java -jar Raspberry_AMiW-0.0.1-SNAPSHOT.jar

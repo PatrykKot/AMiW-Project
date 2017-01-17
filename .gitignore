@@ -7,7 +7,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -345,5 +344,4 @@ __pycache__/
 .classpath
 .project
 Raspberry/.settings/*
-Raspberry/target/*
 *.db

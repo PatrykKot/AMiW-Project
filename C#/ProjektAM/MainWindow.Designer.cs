@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Console = new System.Windows.Forms.TextBox();
             this.buttonGet = new System.Windows.Forms.Button();
             this.textBoxUrl = new System.Windows.Forms.TextBox();
@@ -85,16 +85,16 @@
             // chart1
             // 
             this.chart1.BackColor = System.Drawing.Color.Transparent;
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
+            chartArea5.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea5);
             this.chart1.Location = new System.Drawing.Point(0, 91);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
             this.chart1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Name = "Series1";
-            this.chart1.Series.Add(series4);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series5.Name = "Series1";
+            this.chart1.Series.Add(series5);
             this.chart1.Size = new System.Drawing.Size(423, 223);
             this.chart1.TabIndex = 4;
             this.chart1.Text = "Przebieg pomiaru";
@@ -144,6 +144,11 @@
             this.numericUpDownFreq.Location = new System.Drawing.Point(101, 34);
             this.numericUpDownFreq.Maximum = new decimal(new int[] {
             1000,
+            0,
+            0,
+            0});
+            this.numericUpDownFreq.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});

@@ -22,22 +22,19 @@ public class MeasurementsWeb {
 
 	@GetMapping("getLast")
 	public Map<String, List<Integer>> getLast(@RequestParam Integer length) {
-		/*List<MeasurementDomain> all = mesService.getAll();
-		int size = all.size();
-		if (size - length <= 0)
-			return all;
-		else
-			return all.subList(size - length, size);*/
-		List<Integer> list = new LinkedList<Integer>();
+		List<Integer> listX = new LinkedList<Integer>();
+		List<Integer> listY = new LinkedList<Integer>();
 		Random random = new Random();
 		
 		for(int i=0; i<length; i++)
 		{
-			list.add(random.nextInt()%100);
+			listX.add(random.nextInt()%100);
+			listY.add(random.nextInt()%100);
 		}
 		
 		Map<String, List<Integer>> map = new HashMap<String, List<Integer>>();
-		map.put("measurements", list);
+		map.put("X", listX);
+		map.put("Y", listY);
 		
 		return map;		
 	}

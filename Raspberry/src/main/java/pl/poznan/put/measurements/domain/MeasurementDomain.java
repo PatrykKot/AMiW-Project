@@ -10,7 +10,9 @@ public class MeasurementDomain {
 	@GeneratedValue
 	private Long id;
 
-	private Long value;
+	private Long valueX;
+
+	private Long valueY;
 
 	public Long getId() {
 		return id;
@@ -20,12 +22,20 @@ public class MeasurementDomain {
 		this.id = id;
 	}
 
-	public Long getValue() {
-		return value;
+	public Long getValueX() {
+		return valueX;
 	}
 
-	public void setValue(Long value) {
-		this.value = value;
+	public void setValueX(Long valueX) {
+		this.valueX = valueX;
+	}
+
+	public Long getValueY() {
+		return valueY;
+	}
+
+	public void setValueY(Long valueY) {
+		this.valueY = valueY;
 	}
 
 }

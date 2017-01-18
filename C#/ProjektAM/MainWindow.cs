@@ -30,6 +30,8 @@ namespace ProjektAM
             downloadTimer.Interval = 500; //0.5s
             downloadTimer.Elapsed += OnDownloadTimerEvent;
             downloadTimer.SynchronizingObject = this;
+            numericUpDownDataCount.Value = 100;
+            numericUpDownFreq.Value = 10;
         }
 
         static public String get(String url)
@@ -54,7 +56,7 @@ namespace ProjektAM
         {
             try
             {
-                JsnData data = getJsnObject(textBoxUrl.Text + "?length="
+                JsnData data = getJsnObject(textBoxUrl.Text + "/measurements/getLast?length="
                                     + numericUpDownDataCount.Value.ToString());
                 Console.Text = "";
                 this.measurements = data.measurements;
@@ -83,6 +85,12 @@ namespace ProjektAM
         {
             if (checkBoxAuto.Checked) downloadTimer.Start();
             else downloadTimer.Stop();
+        }
+
+        private void numericUpDownFreq_ValueChanged(object sender, EventArgs e)
+        {
+            downloadTimer.Interval = 1000 * 1 / (float)numericUpDownFreq.Value;
+            System.Console.WriteLine("New interval: " + downloadTimer.Interval);
         }
     }
 

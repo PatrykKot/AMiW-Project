@@ -1,1 +1,0 @@
-dokleiæ do tego jQuery i Bootstrapa

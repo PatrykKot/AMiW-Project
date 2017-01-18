@@ -11,7 +11,6 @@ namespace ProjektAM
 
     public partial class MainWindow : Form
     {
-        private List<int> measurements = new List<int>();
         private System.Timers.Timer downloadTimer = new System.Timers.Timer();
 
         public MainWindow()
@@ -50,13 +49,15 @@ namespace ProjektAM
                 JsnData data = getJsnObject(textBoxUrl.Text + "/measurements/getLast?length="
                                     + numericUpDownDataCount.Value.ToString());
                 Console.Text = "";
-                this.measurements = data.measurements;
+                List<int> dataX = data.X;
+                List<int> dataY = data.Y;
+
                 List<String> lines = new List<String>();
                 chart1.Series["Series1"].Points.Clear();
-                for (int i = 0; i<measurements.Count; ++i)
+                for (int i = 0; i<dataX.Count || i < dataY.Count; ++i)
                 {
-                    lines.Add(measurements[i].ToString());  
-                    chart1.Series["Series1"].Points.AddXY(i, measurements[i]);
+                    lines.Add("X=" + dataX[i].ToString() + ", Y=" +dataY[i].ToString() );  
+                    chart1.Series["Series1"].Points.AddXY(dataX[i], dataY[i]);
                 }
                 Console.Lines = lines.ToArray();
             }

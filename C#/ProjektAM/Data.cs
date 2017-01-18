@@ -7,6 +7,7 @@ namespace ProjektAM
 {
     class JsnData
     {
-        public List<int> measurements { get; set; }
+        public List<int> X { get; set; }
+        public List<int> Y { get; set; }
     }
 }

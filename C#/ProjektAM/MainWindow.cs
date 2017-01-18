@@ -16,10 +16,13 @@ using Newtonsoft.Json;
 
 namespace ProjektAM
 {
+
+
     public partial class MainWindow : Form
     {
+        private List<int> measurements = new List<int>();
         private System.Timers.Timer downloadTimer = new System.Timers.Timer();
-       
+
         public MainWindow()
         {
             InitializeComponent();
@@ -45,21 +48,24 @@ namespace ProjektAM
 
         private void buttonGet_Click(object sender, EventArgs e)
         {
-            printStates();
+            UpdateData();
         }
-        private void printStates()
+        private void UpdateData()
         {
             try
             {
-                JsnData data = getJsnObject(textBoxUrl.Text);
+                JsnData data = getJsnObject(textBoxUrl.Text + "?length="
+                                    + numericUpDownDataCount.Value.ToString());
                 Console.Text = "";
-                List<String> measurments = new List<String>();
-                foreach (int s in data.random)
+                this.measurements = data.measurements;
+                List<String> lines = new List<String>();
+                chart1.Series["Series1"].Points.Clear();
+                for (int i = 0; i<measurements.Count; ++i)
                 {
-                    measurments.Add(s.ToString());
+                    lines.Add(measurements[i].ToString());  
+                    chart1.Series["Series1"].Points.AddXY(i, measurements[i]);
                 }
-                Console.Lines = measurments.ToArray();
- 
+                Console.Lines = lines.ToArray();
             }
             catch (Exception ex)
             {
@@ -67,9 +73,10 @@ namespace ProjektAM
             }
         }
 
+
          private void OnDownloadTimerEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
-             printStates();
+             UpdateData();
         }
 
         private void checkBoxAuto_CheckedChanged(object sender, EventArgs e)

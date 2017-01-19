@@ -54,7 +54,7 @@ namespace ProjektAM
 
                 List<String> lines = new List<String>();
                 chart1.Series["Series1"].Points.Clear();
-                for (int i = 0; i<dataX.Count || i < dataY.Count; ++i)
+                for (int i = 0; i<dataX.Count && i < dataY.Count; ++i)
                 {
                     lines.Add("X=" + dataX[i].ToString() + ", Y=" +dataY[i].ToString() );  
                     chart1.Series["Series1"].Points.AddXY(dataX[i], dataY[i]);
@@ -68,7 +68,7 @@ namespace ProjektAM
         }
 
 
-         private void OnDownloadTimerEvent(Object source, System.Timers.ElapsedEventArgs e)
+        private void OnDownloadTimerEvent(Object source, System.Timers.ElapsedEventArgs e)
         {
              UpdateData();
         }

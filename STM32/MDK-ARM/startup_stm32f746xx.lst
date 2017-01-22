@@ -944,13 +944,13 @@ ARM Macro Assembler    Page 15
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M7.fp.sp --apcs=
 interwork --depend=amiw\startup_stm32f746xx.d -oamiw\startup_stm32f746xx.o -IC:
-\Users\IEUser\Desktop\STM_UART\AMiW\MDK-ARM\RTE\Device\STM32F746NGHx -IC:\Users
-\IEUser\Desktop\STM_UART\AMiW\MDK-ARM\RTE\_AMiW -IC:\Keil_v5\ARM\PACK\ARM\CMSIS
-\5.0.0\CMSIS\Include -IC:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.8.0\Drivers\CMS
-IS\Device\ST\STM32F7xx\Include -IC:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.8.0\D
-rivers\STM32F7xx_HAL_Driver\Inc --predefine="__MICROLIB SETA 1" --predefine="__
-UVISION_VERSION SETA 522" --predefine="_RTE_ SETA 1" --predefine="STM32F746xx S
-ETA 1" --list=startup_stm32f746xx.lst startup_stm32f746xx.s
+\Users\IEUser\Desktop\AMiW-Project\STM32\MDK-ARM\RTE\Device\STM32F746NGHx -IC:\
+Users\IEUser\Desktop\AMiW-Project\STM32\MDK-ARM\RTE\_AMiW -IC:\Keil_v5\ARM\PACK
+\ARM\CMSIS\5.0.0\CMSIS\Include -IC:\Keil_v5\ARM\PACK\Keil\STM32F7xx_DFP\2.8.0\D
+rivers\CMSIS\Device\ST\STM32F7xx\Include -IC:\Keil_v5\ARM\PACK\Keil\STM32F7xx_D
+FP\2.8.0\Drivers\STM32F7xx_HAL_Driver\Inc --predefine="__MICROLIB SETA 1" --pre
+define="__UVISION_VERSION SETA 522" --predefine="_RTE_ SETA 1" --predefine="STM
+32F746xx SETA 1" --list=startup_stm32f746xx.lst startup_stm32f746xx.s
 
 
 

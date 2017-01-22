@@ -68,14 +68,11 @@ static void MX_SPI2_Init(void);
 int main(void)
 {
 	HAL_StatusTypeDef status;
-	char msg[30];
 	
 	TS_StateTypeDef tsState;
 	uint16_t xPos;
 	uint16_t yPos;
 	
-	uint8_t txData1;
-	uint8_t txData2;
 	uint8_t rxData;
 	
   /* USER CODE BEGIN 1 */

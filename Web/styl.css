@@ -1,0 +1,26 @@
+/* styl ciała dokumentu */
+body {
+    background-color: gainsboro;
+}
+
+/* styl nagłówka dokumentu */
+h3 {
+    font-family: bankgothic md bt;
+	font-size: 27px;
+	color: mediumvioletred;
+	text-align: center;
+    margin-left: 20px;
+}
+#refreshingSlider {
+	background-color: darkturquoise;
+	width:1000px; 
+	margin-left:175px;
+}
+
+#plot {
+	background-color: beige;
+	width:1000px; 
+	text-align: center;
+	margin-left:175px;
+	
+}

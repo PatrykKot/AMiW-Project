@@ -254,8 +254,8 @@ Licensed under the MIT license.
 						left: 0,
 						bottom: 0,
 						right: 0,
-						'font-size': "smaller",
-						color: "#545454"
+						'font-size': "medium",
+						color: "#0000EF"
 					})
 					.insertAfter(this.element);
 			}
@@ -514,7 +514,7 @@ Licensed under the MIT license.
         var series = [],
             options = {
                 // the color theme used for graphs
-                colors: ["#edc240", "#afd8f8", "#cb4b4b", "#4da74d", "#9440ed"],
+                colors: ["#008B8B", "#afd8f8", "#cb4b4b", "#4da74d", "#9440ed"],
                 legend: {
                     show: true,
                     noColumns: 1, // number of colums in legend table

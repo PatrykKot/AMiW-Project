@@ -12,13 +12,13 @@ function printPlot(measurements) {
 
 	$.plot("#plot", [ d1 ], {
 		xaxis : {
-			min: -100,
-			max: 100,
+			min: 0,
+			max: 479,
 			label: 'X'
 		},
 		yaxis : {
-			min: -100,
-			max: 100,
+			min: 0,
+			max: 256,
 			label: 'Y'
 		}
 	});

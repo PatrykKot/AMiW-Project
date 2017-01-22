@@ -14,8 +14,15 @@ public class RaspberrySpiService {
 	private static SpiDevice device;
 
 	@PostConstruct
-	void init() throws IOException {
+	void init() {
+		try
+		{
 		device = SpiFactory.getInstance(SpiChannel.CS0);
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
 	}
 
 	public byte writeByte(byte data) throws IOException {

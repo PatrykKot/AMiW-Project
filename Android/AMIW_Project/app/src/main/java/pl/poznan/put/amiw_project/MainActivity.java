@@ -5,15 +5,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.os.Handler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,51 +23,74 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 public class MainActivity extends AppCompatActivity {
+    Handler timerHandler = new Handler();
+    long startTime = 0;
+    Runnable timerRunnable = new Runnable() {
 
-    JSONObject jsonObj;
+        @Override
+        public void run() {
+            updatedata();
+            timerHandler.postDelayed(this, 1000);
+        }
+    };
+    JSONObject jsonObj=new JSONObject();
     private String TAG = MainActivity.class.getSimpleName();
 
-    // URL to get contacts JSON
-    private static String url = "http://192.168.0.102:8080/measurements/getLastTest?length=100"; //tu będziemy kombinować ze zmianą ilości pobieranych rekordów
 
+    private static String url = "/measurements/getLast?length=";
 
-    ArrayList<HashMap<String, String>> contactList;
+    private static String adres = "http://192.168.1.5:8080";
+    private static String probki = "100";
 
+    private void updatedata ()
+    {
+        final EditText adresEdit= (EditText)findViewById(R.id.editText_adres);
+        final EditText probkiEdit= (EditText)findViewById(R.id.editText2_probki);
+
+        adres=adresEdit.getText().toString();
+        if(Integer.parseInt(probkiEdit.getText().toString()) <100)
+        {
+            probkiEdit.setText("100");
+        }
+        probki=probkiEdit.getText().toString();
+        new JsnoDownloandTask().execute();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        new JsnoDownloandTask().execute();
-
+        final Button przycisk = (Button)findViewById(R.id.button_refresh);
+        przycisk.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Button b = (Button) v;
+                if (b.getText().equals("stop")) {
+                    timerHandler.removeCallbacks(timerRunnable);
+                    b.setText("start");
+                } else {
+                    startTime = System.currentTimeMillis();
+                    timerHandler.postDelayed(timerRunnable, 0);
+                    b.setText("stop");
+                }
+            }
+        });
     }
-
-    /**
-     * Async task class to get json by making HTTP call
-     */
     private class JsnoDownloandTask extends AsyncTask<Void, Void, Void> {
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             Log.e(TAG, "Entering JsnoDownloandTask...");
         }
-
         @Override
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
-
-            // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url);
-
+            String jsonStr = sh.makeServiceCall(adres+url+probki);
             Log.e(TAG, "Response from url: " + jsonStr);
-
             if (jsonStr != null) {
                 try {
                     jsonObj = new JSONObject(jsonStr);
-
-
-                } catch (final JSONException e) {
+                }
+                catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
                     runOnUiThread(new Runnable() {
                         @Override
@@ -78,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
                                     .show();
                         }
                     });
-
                 }
             } else {
                 Log.e(TAG, "Couldn't get json from server.");
@@ -91,12 +113,9 @@ public class MainActivity extends AppCompatActivity {
                                 .show();
                     }
                 });
-
             }
-
             return null;
         }
-
         @Override
         protected void onPostExecute(Void result) {
             LineChart chart = (LineChart) findViewById(R.id.chart);
@@ -106,10 +125,9 @@ public class MainActivity extends AppCompatActivity {
                 testX = jsonObj.getJSONArray("X");
                 testY = jsonObj.getJSONArray("Y");
             } catch (JSONException e) {
-                e.printStackTrace();
+                Log.e(TAG, e.getMessage());
             }
-
-
+            Log.e(TAG,  "List<Entry> entries = new LinkedList<Entry>()");
             List<Entry> entries = new LinkedList<Entry>();
             try {
                 for (int i = 0; i < testY.length() && i < testX.length(); ++i) {
@@ -117,17 +135,21 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             catch (JSONException e) {
-                e.printStackTrace();
+                Log.e(TAG, e.getMessage());
             }
-
             Log.i(TAG, "Length " + entries.size());
             LineDataSet dataSet = new LineDataSet(entries, "Próbki");
             LineData lineData = new LineData(dataSet);
             chart.setData(lineData);
-            chart.invalidate(); // refresh
-
+            chart.invalidate();
             Log.e(TAG, "JsnoDownloandTask ended.");
         }
-
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        timerHandler.removeCallbacks(timerRunnable);
+        Button b = (Button)findViewById(R.id.button_refresh);
+        b.setText("start");
     }
 }

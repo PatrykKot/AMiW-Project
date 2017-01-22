@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.pi4j.system.SystemInfo;
 import pl.poznan.put.device.service.RaspberrySpiService;
 import pl.poznan.put.measurements.domain.MeasurementDomain;
 
@@ -31,6 +32,15 @@ public class MeasurementService {
 
 	@Scheduled(fixedRate = 20)
 	public void getTouchSpiValues() throws IOException {
+		try
+		{
+			SystemInfo.getBoardType();
+		}
+		catch(Exception ex)
+		{
+			return;
+		}
+		
 		raspberrySpiService.writeByte(X_ADDRESS);
 		byte[] readBytes = raspberrySpiService.readBytes(2);
 		int xVal = (((readBytes[1] & 0xFF) << 8) | (readBytes[0] & 0xFF));

@@ -52,8 +52,8 @@ public class MeasurementsWeb {
 		Random random = new Random();
 
 		for (int i = 0; i < length; i++) {
-			listX.add(random.nextInt((200)));
-			listY.add(random.nextInt((200)));
+			listX.add(random.nextInt((479)));
+			listY.add(random.nextInt((256)));
 		}
 
 		Map<String, List<Integer>> map = new HashMap<String, List<Integer>>();

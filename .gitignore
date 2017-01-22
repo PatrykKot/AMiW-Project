@@ -7,7 +7,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -340,3 +339,9 @@ __pycache__/
 
 # Cake - Uncomment if you are using it
 # tools/
+
+# Custom
+.classpath
+.project
+Raspberry/.settings/*
+*.db

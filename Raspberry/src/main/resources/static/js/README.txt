@@ -1,1 +1,0 @@
-Miejsce na skrypty

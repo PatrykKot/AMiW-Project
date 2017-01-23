@@ -18,9 +18,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.renderer.DataRenderer;
 
 public class MainActivity extends AppCompatActivity {
     Handler timerHandler = new Handler();
@@ -30,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
             updatedata();
-            timerHandler.postDelayed(this, 1000);
+            timerHandler.postDelayed(this, 500);
         }
     };
     JSONObject jsonObj=new JSONObject();
@@ -39,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static String url = "/measurements/getLast?length=";
 
-    private static String adres = "http://192.168.1.5:8080";
-    private static String probki = "100";
+    private static String adres = "";
+    private static String probki = "";
 
     private void updatedata ()
     {
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final Button przycisk = (Button)findViewById(R.id.button_refresh);
+
         przycisk.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -74,6 +78,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        LineChart chart = (LineChart) findViewById(R.id.chart);
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setAxisMinimum(0);
+        xAxis.setAxisMaximum(479);
+
+        YAxis yAxis = chart.getAxis(YAxis.AxisDependency.LEFT);
+        yAxis.setAxisMinimum(0);
+        yAxis.setAxisMaximum(256);
+
+        yAxis = chart.getAxis(YAxis.AxisDependency.RIGHT);
+        yAxis.setAxisMinimum(0);
+        yAxis.setAxisMaximum(256);
     }
     private class JsnoDownloandTask extends AsyncTask<Void, Void, Void> {
         @Override
@@ -138,7 +155,14 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, e.getMessage());
             }
             Log.i(TAG, "Length " + entries.size());
+            Log.i(TAG, entries.toString());
             LineDataSet dataSet = new LineDataSet(entries, "Próbki");
+            dataSet.setDrawCircles(false);
+            dataSet.setMode(LineDataSet.Mode.LINEAR);
+            dataSet.setVisible(true);
+            dataSet.setDrawValues(true);
+            dataSet.setLineWidth(5);
+
             LineData lineData = new LineData(dataSet);
             chart.setData(lineData);
             chart.invalidate();

@@ -41,6 +41,11 @@ public class MeasurementService {
 			return;
 		}
 		
+		if(positionList == null)
+		{
+			positionList = new LinkedList<MeasurementDomain>();
+		}
+		
 		raspberrySpiService.writeByte(X_ADDRESS);
 		byte[] readBytes = raspberrySpiService.readBytes(2);
 		int xVal = (((readBytes[1] & 0xFF) << 8) | (readBytes[0] & 0xFF));
